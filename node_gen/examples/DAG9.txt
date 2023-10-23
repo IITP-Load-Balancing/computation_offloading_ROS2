@@ -1,0 +1,13 @@
+## Hierarchical Structure
+
+# Create a hierarchical structure of nodes.
+ros2 run node_gen dynamic_pub root_node root_topic 80 100 &
+
+ros2 run node_gen dynamic_node middle_node1 root_topic middle_topic1 100 &
+ros2 run node_gen dynamic_node middle_node2 root_topic middle_topic2 100 &
+
+ros2 run node_gen dynamic_node leaf_node1 middle_topic1 leaf_topic1 100 &
+ros2 run node_gen dynamic_node leaf_node2 middle_topic2 leaf_topic2 100 &
+
+# Command to stop background processes.
+pkill -f node_gen

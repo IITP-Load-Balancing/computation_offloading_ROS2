@@ -1,0 +1,16 @@
+# DAG2
+ros2 run node_gen dynamic_pub node4 topic1 50 100 &
+ros2 run node_gen dynamic_node node5 topic1 topic5 100 &
+ros2 run node_gen dynamic_node node6 topic5 topic6 100 &
+ros2 run node_gen dynamic_node node7 topic6 topic7 100 &
+ros2 run node_gen dynamic_node node8 topic6 topic8 100 &
+ros2 run node_gen dynamic_node node9 topic8 topic9 100 &
+
+ros2 run node_gen dynamic_pub node1 topic10 50 100 &
+ros2 run node_gen dynamic_node node2 topic10 topic11 100 &
+ros2 run node_gen dynamic_node node3 topic11 topic12 100 &
+
+ros2 run node_gen dynamic_pub node10 topic13 50 100 &
+ros2 run node_gen dynamic_node node11 topic13 topic14 100 &
+
+# terminate backgorund process : pkill -f node

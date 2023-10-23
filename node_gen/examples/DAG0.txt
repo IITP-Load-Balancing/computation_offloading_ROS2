@@ -1,0 +1,8 @@
+#simple
+ros2 run node_gen dynamic_pub node1 topic1 50 100 &
+ros2 run node_gen dynamic_node node5_proxy topic1 topic1_local 100 &
+ros2 run node_gen dynamic_node node5_server topic1_server topic2 100 &
+ros2 run node_gen dynamic_node node5 topic1_local topic2 100 &
+
+# terminate backgorund process : pkill -f node
+

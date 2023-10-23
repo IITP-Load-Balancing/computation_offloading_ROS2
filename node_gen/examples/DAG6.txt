@@ -1,0 +1,12 @@
+## Star Topology
+
+# Initialize a central publisher with subscribers around it.
+ros2 run node_gen dynamic_pub central_node central_topic 80 100 &
+
+ros2 run node_gen dynamic_node star_node1 central_topic topic_1 100 &
+ros2 run node_gen dynamic_node star_node2 central_topic topic_2 100 &
+ros2 run node_gen dynamic_node star_node3 central_topic topic_3 100 &
+ros2 run node_gen dynamic_node star_node4 central_topic topic_4 100 &
+
+# Command to stop background processes.
+pkill -f node_gen

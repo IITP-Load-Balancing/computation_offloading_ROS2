@@ -1,7 +1,7 @@
 
 # node_gen
 
-가상의 node DAG를 임의로 구성하기 위한 node generator 패키지
+가상의 node DAG을 임의로 구성하기 위한 node generator 패키지
 
 # 실행 예시
 

@@ -1,0 +1,29 @@
+# Starting independent branches with different topics
+ros2 run node_gen dynamic_pub new_root_node1 new_topic_root1 60 100 &
+ros2 run node_gen dynamic_pub new_root_node2 new_topic_root2 60 100 &
+
+# Branch 1
+ros2 run node_gen dynamic_node new_node1 new_topic_root1 new_topic1 100 &
+ros2 run node_gen dynamic_node new_node2 new_topic1 new_topic2 100 &
+ros2 run node_gen dynamic_node new_node3 new_topic2 new_topic3 100 &
+
+# Creating a more complex structure in Branch 2
+ros2 run node_gen dynamic_node new_node4 new_topic_root2 new_topic4 100 &
+ros2 run node_gen dynamic_node new_node5 new_topic4 new_topic5 100 &
+ros2 run node_gen dynamic_node new_node6 new_topic5 new_topic6 100 &
+ros2 run node_gen dynamic_node new_node7 new_topic5 new_topic7 100 &
+
+# Merge of data flow from different branches (nodes from different branches communicating)
+ros2 run node_gen dynamic_node new_node8 new_topic3 new_topic8 100 &
+ros2 run node_gen dynamic_node new_node9 new_topic6 new_topic9 100 &
+ros2 run node_gen dynamic_node new_node10 new_topic7 new_topic10 100 &
+ros2 run node_gen dynamic_node new_merge_node new_topic8 new_merge_topic 100 &
+ros2 run node_gen dynamic_node new_merge_node2 new_topic9 new_merge_topic 100 &
+ros2 run node_gen dynamic_node new_merge_node3 new_topic10 new_merge_topic 100 &
+
+# Ending the DAG with a single node subscribing to the merged topic
+ros2 run node_gen dynamic_node new_end_node new_merge_topic new_end_topic 100 &
+
+# terminate background processes
+pkill -f node_gen
+

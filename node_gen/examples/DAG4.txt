@@ -1,0 +1,32 @@
+# Creating multiple starting nodes, each with its own independent topic.
+ros2 run node_gen dynamic_pub base_node_A topic_A 70 100 &
+ros2 run node_gen dynamic_pub base_node_B topic_B 70 100 &
+ros2 run node_gen dynamic_pub base_node_C topic_C 70 100 &
+
+# First branch: single flow
+ros2 run node_gen dynamic_node branch_node_A1 topic_A branch_topic_A1 100 &
+ros2 run node_gen dynamic_node branch_node_A2 branch_topic_A1 branch_topic_A2 100 &
+ros2 run node_gen dynamic_node branch_node_A3 branch_topic_A2 branch_final_A 100 &
+
+# Second branch: diverging and merging flow
+ros2 run node_gen dynamic_node branch_node_B1 topic_B branch_topic_B1 100 &
+ros2 run node_gen dynamic_node branch_node_B2 branch_topic_B1 branch_topic_B2 100 &
+ros2 run node_gen dynamic_node branch_node_B3 branch_topic_B1 branch_topic_B3 100 &
+ros2 run node_gen dynamic_node branch_merge_node_B branch_topic_B2 merge_topic_B 100 &
+ros2 run node_gen dynamic_node branch_merge_node_B2 branch_topic_B3 merge_topic_B 100 &
+
+# Third branch: independent divergence
+ros2 run node_gen dynamic_node branch_node_C1 topic_C branch_topic_C1 100 &
+ros2 run node_gen dynamic_node branch_node_C2 branch_topic_C1 branch_topic_C2 100 &
+ros2 run node_gen dynamic_node branch_node_C3 branch_topic_C1 branch_topic_C3 100 &
+
+# Merging data flows through complex topic interactions
+ros2 run node_gen dynamic_node global_merge_node merge_topic_B global_topic 100 &
+ros2 run node_gen dynamic_node global_merge_node2 branch_final_A global_topic 100 &
+
+# Final node subscribing to the merged data
+ros2 run node_gen dynamic_node end_node global_topic end_topic 100 &
+
+# Terminating background processes
+pkill -f node_gen
+

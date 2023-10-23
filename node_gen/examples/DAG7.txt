@@ -1,0 +1,11 @@
+## Separate Branches
+
+# Initialize separate branches that do not interact.
+ros2 run node_gen dynamic_pub branch1_root branch1_topic 80 100 &
+ros2 run node_gen dynamic_pub branch2_root branch2_topic 80 100 &
+
+ros2 run node_gen dynamic_node branch1_node1 branch1_topic topic_end1 100 &
+ros2 run node_gen dynamic_node branch2_node1 branch2_topic topic_end2 100 &
+
+# Command to stop background processes.
+pkill -f node_gen

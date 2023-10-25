@@ -10,7 +10,7 @@ ros2 run node_gen variable_payload_sub -> subscriber
 ros2 run node_gen payload_pub v1 t1 1000 0 1000 3000 10 -> publisher
 
 
-# simple example (4 node in a way)
+# simple example (4 nodes in a way)
 
 ros2 run node_gen payload_pub v1 t1 1000 0 1000 3000 10
 
